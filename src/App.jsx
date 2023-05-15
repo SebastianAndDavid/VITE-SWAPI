@@ -1,8 +1,9 @@
 import "./App.css";
-import fetchPeople from "./utils/fetch-utils";
+import { fetchPeople, fetchPeopleById } from "./utils/fetch-utils";
 
 function App() {
   fetchPeople();
+  fetchPeopleById();
 
   return (
     <>
