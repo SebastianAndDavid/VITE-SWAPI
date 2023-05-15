@@ -3,8 +3,8 @@ async function fetchPeople() {
   const { results } = await data.json();
   return results;
 }
-async function fetchPeopleById(id) {
-  const data = await fetch(`https://www.swapi.tech/api/people/${id}`);
+async function fetchPeopleById() {
+  const data = await fetch("https://www.swapi.tech/api/people/1");
   const { result } = await data.json();
   const { properties } = result;
   return properties;

@@ -1,4 +1,6 @@
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import "./App.css";
+import Home from "./Components/Home";
 import { fetchPeople, fetchPeopleById } from "./utils/fetch-utils";
 
 function App() {
@@ -6,9 +8,11 @@ function App() {
   fetchPeopleById();
 
   return (
-    <>
-      <div>Swapi API</div>
-    </>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
+    </Router>
   );
 }
 
