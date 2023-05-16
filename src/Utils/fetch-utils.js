@@ -1,13 +1,13 @@
 async function fetchPeople() {
-  const data = await fetch("https://www.swapi.tech/api/people");
+  const data = await fetch("https://swapi.dev/api/people");
   const { results } = await data.json();
   return results;
 }
-async function fetchPeopleById() {
-  const data = await fetch("https://www.swapi.tech/api/people/1");
-  const { result } = await data.json();
-  const { properties } = result;
-  return properties;
+
+async function fetchSinglePlanet(url) {
+  const data = await fetch(url);
+  const result = await data.json();
+  return result;
 }
 
-export { fetchPeople, fetchPeopleById };
+export { fetchPeople, fetchSinglePlanet };
