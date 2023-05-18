@@ -10,4 +10,11 @@ async function fetchSinglePlanet(url) {
   return result;
 }
 
-export { fetchPeople, fetchSinglePlanet };
+async function fetchFilm() {
+  const data = await fetch("https://swapi.dev/api/films/1/");
+  const res = await data.json();
+  console.log("res", res);
+  return res;
+}
+
+export { fetchPeople, fetchSinglePlanet, fetchFilm };

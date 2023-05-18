@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useNavigate, useParams } from "react-router-dom";
 import "./People.css";
+import PeopleDetailCard from "./PeopleDetailCard";
 
 function PeopleDetail({ people }) {
   const { id } = useParams();
@@ -25,6 +26,7 @@ function PeopleDetail({ people }) {
         <p>Mass: {singlePerson.mass}</p>
         <p>Homeworld: {singlePerson.homeworld}</p>
       </div>
+      <PeopleDetailCard people={people} />
     </div>
   );
 }
