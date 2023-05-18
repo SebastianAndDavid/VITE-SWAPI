@@ -17,6 +17,7 @@ export default function PeopleDetailCard({ people }) {
   const [vehicles, setVehicles] = useState({});
   const [planet, setPlanet] = useState({});
   const [species, setSpecies] = useState({});
+  console.log("vehicles", vehicles);
 
   const urlFilm = singlePerson.films[0];
   const urlStarship = singlePerson.starships[0];

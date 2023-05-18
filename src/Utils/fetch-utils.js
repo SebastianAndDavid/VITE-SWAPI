@@ -11,29 +11,49 @@ async function fetchSinglePlanet(url) {
 }
 
 async function fetchFilm(url) {
-  const data = await fetch(url);
-  const res = await data.json();
-  return res;
+  if (url === undefined || null) {
+    return {};
+  } else {
+    const data = await fetch(url);
+    const res = await data.json();
+    return res;
+  }
 }
 async function fetchStarships(url) {
-  const data = await fetch(url);
-  const res = await data.json();
-  return res;
+  if (url === undefined || null) {
+    return {};
+  } else {
+    const data = await fetch(url);
+    const res = await data.json();
+    return res;
+  }
 }
 async function fetchVehicle(url) {
-  const data = await fetch(url);
-  const res = await data.json();
-  return res;
+  if (url === undefined || null) {
+    return {};
+  } else {
+    const data = await fetch(url);
+    const res = await data.json();
+    return res;
+  }
 }
 async function fetchPlanet(url) {
-  const data = await fetch(url);
-  const res = await data.json();
-  return res;
+  if (url === undefined || null) {
+    return {};
+  } else {
+    const data = await fetch(url);
+    const res = await data.json();
+    return res;
+  }
 }
 async function fetchSpecies(url) {
-  const data = await fetch(url);
-  const res = await data.json();
-  return res;
+  if (url === undefined || null) {
+    return {};
+  } else {
+    const data = await fetch(url);
+    const res = await data.json();
+    return res;
+  }
 }
 export {
   fetchPeople,
