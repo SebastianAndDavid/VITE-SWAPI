@@ -20,5 +20,15 @@ async function fetchStarships(url) {
   const res = await data.json();
   return res;
 }
-
-export { fetchPeople, fetchSinglePlanet, fetchFilm, fetchStarships };
+async function fetchVehicle(url) {
+  const data = await fetch(url);
+  const res = await data.json();
+  return res;
+}
+export {
+  fetchPeople,
+  fetchSinglePlanet,
+  fetchFilm,
+  fetchStarships,
+  fetchVehicle,
+};
