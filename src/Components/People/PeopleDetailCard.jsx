@@ -11,14 +11,12 @@ import {
 export default function PeopleDetailCard({ people }) {
   const { id } = useParams();
   const singlePerson = people.find((person) => person.height === id);
-  console.log("singlePerson", singlePerson);
+
   const [film, setFilm] = useState({});
   const [starship, setStarship] = useState({});
   const [vehicles, setVehicles] = useState({});
   const [planet, setPlanet] = useState({});
   const [species, setSpecies] = useState({});
-
-  console.log("species", species);
 
   const urlFilm = singlePerson.films[0];
   const urlStarship = singlePerson.starships[0];
@@ -62,33 +60,43 @@ export default function PeopleDetailCard({ people }) {
 
   return (
     <div>
-      <div className="detail-card">
-        <h5>{film.title}</h5>
-        <p>{film.director}</p>
-        <p>{film.producer}</p>
-        <p>{film.release_date}</p>
-      </div>
-      <div className="detail-card">
-        <h5>{starship.name}</h5>
-        <p>Manufacturer: {starship.manufacturer}</p>
-        <p>Model: {starship.model}</p>
-        <p>Class: {starship.starship_class}</p>
-      </div>
-      <div className="detail-card">
-        <h5>{vehicles.name}</h5>
-        <p>Manufacturer: {vehicles.manufacturer}</p>
-        <p>Model: {vehicles.model}</p>
-        <p>Class: {vehicles.vehicle_class}</p>
-      </div>
-      <div className="detail-card">
-        <h5>{planet.name}</h5>
-        <p>Climate: {planet.climate}</p>
-        <p>Population: {planet.population}</p>
-        <p>Terrain: {planet.terrain}</p>
-      </div>
-      <div className="detail-card">
-        <h5>{species.name}</h5>
-      </div>
+      {film.name && (
+        <div className="detail-card">
+          <h5>{film.title}</h5>
+          <p>{film.director}</p>
+          <p>{film.producer}</p>
+          <p>{film.release_date}</p>
+        </div>
+      )}
+      {starship.name && (
+        <div className="detail-card">
+          <h5>{starship.name}</h5>
+          <p>Manufacturer: {starship.manufacturer}</p>
+          <p>Model: {starship.model}</p>
+          <p>Class: {starship.starship_class}</p>
+        </div>
+      )}
+      {vehicles.name && (
+        <div className="detail-card">
+          <h5>{vehicles.name}</h5>
+          <p>Manufacturer: {vehicles.manufacturer}</p>
+          <p>Model: {vehicles.model}</p>
+          <p>Class: {vehicles.vehicle_class}</p>
+        </div>
+      )}
+      {planet.name && (
+        <div className="detail-card">
+          <h5>{planet.name}</h5>
+          <p>Climate: {planet.climate}</p>
+          <p>Population: {planet.population}</p>
+          <p>Terrain: {planet.terrain}</p>
+        </div>
+      )}
+      {species.name && (
+        <div className="detail-card">
+          <h5>{species.name}</h5>
+        </div>
+      )}
     </div>
   );
 }
