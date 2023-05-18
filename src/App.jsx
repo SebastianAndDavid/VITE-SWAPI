@@ -18,6 +18,7 @@ function App() {
     const mappedOverPeople = people.map((person, i) => ({
       ...person,
       homeworld: homeworlds[i].name,
+      homeworld_url: person.homeworld,
     }));
     setPeople(mappedOverPeople);
     return people;

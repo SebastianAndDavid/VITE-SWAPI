@@ -25,10 +25,22 @@ async function fetchVehicle(url) {
   const res = await data.json();
   return res;
 }
+async function fetchPlanet(url) {
+  const data = await fetch(url);
+  const res = await data.json();
+  return res;
+}
+async function fetchSpecies(url) {
+  const data = await fetch(url);
+  const res = await data.json();
+  return res;
+}
 export {
   fetchPeople,
   fetchSinglePlanet,
   fetchFilm,
   fetchStarships,
   fetchVehicle,
+  fetchPlanet,
+  fetchSpecies,
 };

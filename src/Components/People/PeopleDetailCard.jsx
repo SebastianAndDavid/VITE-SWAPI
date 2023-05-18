@@ -1,21 +1,30 @@
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import {
   fetchFilm,
+  fetchSpecies,
   fetchStarships,
   fetchVehicle,
 } from "../../Utils/fetch-utils";
 
 /* eslint-disable react/prop-types */
 export default function PeopleDetailCard({ people }) {
+  const { id } = useParams();
+  const singlePerson = people.find((person) => person.height === id);
+  console.log("singlePerson", singlePerson);
   const [film, setFilm] = useState({});
   const [starship, setStarship] = useState({});
   const [vehicles, setVehicles] = useState({});
+  const [planet, setPlanet] = useState({});
+  const [species, setSpecies] = useState({});
 
-  console.log("vehicles", vehicles);
+  console.log("species", species);
 
-  const urlFilm = people[0].films[0];
-  const urlStarship = people[0].starships[0];
-  const urlVehicle = people[0].vehicles[0];
+  const urlFilm = singlePerson.films[0];
+  const urlStarship = singlePerson.starships[0];
+  const urlVehicle = singlePerson.vehicles[0];
+  const urlPlanet = singlePerson.homeworld_url;
+  const urlSpecies = singlePerson.species[0];
 
   async function handleFetchSingleFilm(urlFilm) {
     const film = await fetchFilm(urlFilm);
@@ -32,11 +41,23 @@ export default function PeopleDetailCard({ people }) {
     setVehicles(vehicle);
     return vehicle;
   }
+  async function handleFetchSinglePlanet(urlPlanet) {
+    const planet = await fetchVehicle(urlPlanet);
+    setPlanet(planet);
+    return planet;
+  }
+  async function handleFetchSingleSpecies(urlSpecies) {
+    const species = await fetchSpecies(urlSpecies);
+    setSpecies(species);
+    return species;
+  }
 
   useEffect(() => {
     handleFetchSingleFilm(urlFilm);
     handleFetchSingleStarship(urlStarship);
     handleFetchSingleVehicle(urlVehicle);
+    handleFetchSinglePlanet(urlPlanet);
+    handleFetchSingleSpecies(urlSpecies);
   }, []);
 
   return (
@@ -58,6 +79,15 @@ export default function PeopleDetailCard({ people }) {
         <p>Manufacturer: {vehicles.manufacturer}</p>
         <p>Model: {vehicles.model}</p>
         <p>Class: {vehicles.vehicle_class}</p>
+      </div>
+      <div className="detail-card">
+        <h5>{planet.name}</h5>
+        <p>Climate: {planet.climate}</p>
+        <p>Population: {planet.population}</p>
+        <p>Terrain: {planet.terrain}</p>
+      </div>
+      <div className="detail-card">
+        <h5>{species.name}</h5>
       </div>
     </div>
   );
