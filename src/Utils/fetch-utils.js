@@ -10,11 +10,15 @@ async function fetchSinglePlanet(url) {
   return result;
 }
 
-async function fetchFilm() {
-  const data = await fetch("https://swapi.dev/api/films/1/");
+async function fetchFilm(url) {
+  const data = await fetch(url);
   const res = await data.json();
-  console.log("res", res);
+  return res;
+}
+async function fetchStarships(url) {
+  const data = await fetch(url);
+  const res = await data.json();
   return res;
 }
 
-export { fetchPeople, fetchSinglePlanet, fetchFilm };
+export { fetchPeople, fetchSinglePlanet, fetchFilm, fetchStarships };

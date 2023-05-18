@@ -70,7 +70,7 @@ body,
 
 /* PeopleDetailCard */
 
-.film-card {
+.detail-card {
   display: flex;
   justify-content: top;
   border: 1px solid black;
