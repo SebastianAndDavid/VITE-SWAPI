@@ -1,34 +1,45 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import "./App.css";
+import People from "./Components/People/People";
+import PeopleDetail from "./Components/People/PeopleDetail";
+import { useEffect, useState } from "react";
+import { fetchPeople, fetchSinglePlanet } from "./Utils/fetch-utils";
 
 function App() {
-  const [count, setCount] = useState(0);
+  // all of our state stuff gets done here
+  const [people, setPeople] = useState([]);
+
+  async function handleFetchPeople() {
+    const people = await fetchPeople();
+    const homeworldPromises = people.map((person) =>
+      handleFetchSinglePlanet(person.homeworld)
+    );
+    const homeworlds = await Promise.all(homeworldPromises);
+    const mappedOverPeople = people.map((person, i) => ({
+      ...person,
+      homeworld: homeworlds[i].name,
+      homeworld_url: person.homeworld,
+    }));
+    setPeople(mappedOverPeople);
+    return people;
+  }
+
+  async function handleFetchSinglePlanet(url) {
+    const response = await fetchSinglePlanet(url);
+    return response;
+  }
+
+  useEffect(() => {
+    handleFetchPeople();
+  }, []);
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React. Hello!</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <Router>
+      <Routes>
+        <Route path="/" element={<People people={people} />} />
+        <Route path="detail/:id" element={<PeopleDetail people={people} />} />
+      </Routes>
+    </Router>
   );
 }
 
