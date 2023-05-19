@@ -60,7 +60,7 @@ export default function PeopleDetailCard({ people }) {
   }, []);
 
   return (
-    <div>
+    <div className="rightside-container">
       {film.name && (
         <div className="detail-card">
           <h5>{film.title}</h5>
